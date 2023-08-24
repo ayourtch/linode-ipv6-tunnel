@@ -33,39 +33,41 @@ Notice, that there is no encryption - the tunnel is treated the same way as any 
 
 Installation:
 
-1) Obtain an account on Linode (linode.com) and login
+0) Download a combined image from http://stdio.be/blog/2023-08-24-full-1500-mtu-ipv6-lab/ - unless anything is written there, pick the latest.
 
-2) Select "Create" button and in the dropdown select "Linode"
+2) Obtain an account on Linode (linode.com) and login
 
-3) Use Alpine OS (or any other, really - this will be just a temporary, but Alpine is probably smaller),
+3) Select "Create" button and in the dropdown select "Linode"
+
+4) Use Alpine OS (or any other, really - this will be just a temporary, but Alpine is probably smaller),
   select the Region that is closest to you, amd select the smallest "Shared CPU" Linode Plan (Nanode 1GB)
   Edit the Linode label to say "openwrt" or something along these lines. Select a temporary strong password.
   hit "Create Linode" button. You will see it appear yellow "Provisioning" status
 
-4) Still in the page for this linode, select "Network" menu item. You will see the list of IP Addresses
+5) Still in the page for this linode, select "Network" menu item. You will see the list of IP Addresses
 at the bottom - one public IPv4, one link-local IPv6, and a SLAAC IPv6 address. Click "Add IP Address"
 and under "IPv6", select "/56", and then hit "Allocate". You will see an "IPv6 - Range" appearing in the list
 of the addresses for the linode. The Address column will read something like "2600:3c07:e002:f500::/56" -
 copy it down, you will need it later.
 
-5)  in the left-hand menu click "Images" and hit "Create Image" button on the right-top corner, in the
+6)  in the left-hand menu click "Images" and hit "Create Image" button on the right-top corner, in the
 next page that pops up select "Upload Image" tab.
 
-6) Type in a label for the image, e.g. "OpenWRT0001-ds", select the same Region that you used in (3),
+7) Type in a label for the image, e.g. "OpenWRT0001-ds", select the same Region that you used in (3),
 and then browse to the file openwrt-x86-64-generic-ext4-combined.img.gz and upload it. After upload
 it will change state to "Pending" - it will take a couple of minutes before it finishes processing.
 After a while it will change to "0MB" - then you can refresh the page and you will see it is 121MB.
 
-7) Click on the "..." on the right side of the image, and select "Rebuild existing linode". From
+8) Click on the "..." on the right side of the image, and select "Rebuild existing linode". From
 the drop-down select your Linode that you have just created in step 3 - probably called "openwrt",
 and click "Restore image".
 
-8) In the next screen, again select the image in the "Images" dropdown, select some strong password
+9) In the next screen, again select the image in the "Images" dropdown, select some strong password
 (it is not used by openwrt image, but is required to enter), and type in the name of the linode
 again at the bottom input, and hit "Rebuild Linode". The rebuild will take a few minutes and you will
 see the percentage progress indicator.
 
-9) When the reimage finishes, click the "Launch LISH Console". You should have a new window popping up,
+10) When the reimage finishes, click the "Launch LISH Console". You should have a new window popping up,
 with a somewhat scary output, as below. Do not worry - it is expected, as we need to change the boot
 type for this image and reboot it.
 
