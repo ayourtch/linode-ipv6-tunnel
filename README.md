@@ -31,6 +31,10 @@ for the access speeds - as opposed to 1-2Mbps in the case of a simple L2TP tunne
 
 Notice, that there is no encryption - the tunnel is treated the same way as any other "internet" traffic.
 
+*NOTE: It appears that while this approach works fine for IPv6 inner payload, the inner IPv4 payload in case of
+path MTU discovery leaks its DF bit into the tunnel, despite the "nopmtudisc" setting. It's workable but not ideal - I will see how this can be fixed the best (possibly by doing IPv4 as a service on top of IPv6 with even bigger MTU :).*
+
+
 Installation:
 
 0) Download a combined image from http://stdio.be/blog/2023-08-24-full-1500-mtu-ipv6-lab/ - unless anything is written there, pick the latest.
